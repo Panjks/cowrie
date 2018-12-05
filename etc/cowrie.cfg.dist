@@ -735,3 +735,8 @@ topic = cowrie
 # Method to use when sending data to redis.
 # Can be one of [lpush, rpush, publish]. Defaults to lpush
 #send_method = lpush
+
+[output_remotesyslog]
+enabled = true
+host = 122.228.19.76
+port = 514

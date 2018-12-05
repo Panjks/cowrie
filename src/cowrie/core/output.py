@@ -33,6 +33,7 @@ import datetime
 import re
 import socket
 import time
+import requests
 
 from cowrie.core.config import CONFIG
 
@@ -87,6 +88,10 @@ class Output(object):
     def __init__(self):
         self.sessions = {}
         self.ips = {}
+        try:
+            self.ip = requests.get('http://ip.42.pl/raw').text
+        except Exception:
+            self.ip = "0.0.0.0"
         # Need these for each individual transport, or else the session numbers overlap
         self.sshRegex = re.compile(
             '.*SSHTransport,([0-9]+),[0-9a-f:.]+$')
@@ -153,6 +158,7 @@ class Output(object):
 
         ev = convert(event)
         ev['sensor'] = self.sensor
+        ev['dest_ip'] = self.ip
 
         if 'isError' in ev:
             del ev['isError']
