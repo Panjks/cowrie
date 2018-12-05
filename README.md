@@ -3,6 +3,49 @@ Cowrie
 
 ![Travis CI Status](https://travis-ci.org/cowrie/cowrie.svg?branch=master "Travis CI Status")
 
+# Cowrie GitHub repository edited by panjks-
+
+## 修改内容
+
+1. 添加了日志中外网IP的json字段，格式为`{"dest_ip": 127.0.0.1}`
+
+2. ~~修改了Linux下`free`命令的内存大小。~~
+
+   因更新后cowrie实现了简单的动态显示内存，暂时使用该功能，暂未进行测试。
+
+3. ~~修改hostname为`ubuntu`，文件路径为：`honeyfs/etc/hostname`~~
+
+   这个需要使用配置文件中的hostname字段进行修改。
+
+4. 修改pre-login banner为`Ubuntu 16.04.5 LTS \n \l`，文件路径为：`honeyfs/etc/issuel`
+
+5. 修改post-login banner为以下，文件路径为：`honeyfs\etc\motd`
+
+   ```
+   
+   Welcome to Ubuntu 16.04.5 LTS (GNU/Linux 4.4.0-1066-aws x86_64)
+   
+    * Documentation:  https://help.ubuntu.com
+    * Management:     https://landscape.canonical.com
+    * Support:        https://ubuntu.com/advantage
+   
+     Get cloud support with Ubuntu Advantage Cloud Guest:
+       http://www.ubuntu.com/business/services/cloud
+   
+   0 packages can be updated.
+   0 updates are security updates.
+   
+   
+   Last login: Mon Aug 27 06:27:10 2018 from 127.0.0.1
+   
+   ```
+
+6. 修改cpu信息为`Intel(R) Xeon(R) CPU X5650 @ 2.67GHz`，文件路径为：`honeyfs/proc/cpuinfo`
+
+## 待修改内容
+
+1. 定时删除日志？
+
 # Welcome to the Cowrie GitHub repository
 
 This is the official repository for the Cowrie SSH and Telnet
