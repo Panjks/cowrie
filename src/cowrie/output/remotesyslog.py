@@ -26,7 +26,7 @@ class Output(cowrie.core.output.Output):
 
     def start(self):
         self.logger = logging.getLogger()
-        fh = logging.handlers.SysLogHandler((self.host, int(self.port)), logging.handlers.SysLogHandler.LOG_AUTHs)
+        fh = logging.handlers.SysLogHandler((self.host, int(self.port)), logging.handlers.SysLogHandler.LOG_AUTH)
         formatter = logging.Formatter('%(message)s')
         fh.setFormatter(formatter)
         self.logger.addHandler(fh)
