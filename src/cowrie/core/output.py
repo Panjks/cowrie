@@ -159,6 +159,7 @@ class Output(object):
         ev = convert(event)
         ev['sensor'] = self.sensor
         ev['dest_ip'] = self.ip
+        ev['type'] = 'cowrie'
 
         if 'isError' in ev:
             del ev['isError']
