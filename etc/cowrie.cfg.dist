@@ -740,3 +740,4 @@ topic = cowrie
 enabled = true
 host = 122.228.19.76
 port = 514
+server = "http://122.228.19.76:9999/upload.php"

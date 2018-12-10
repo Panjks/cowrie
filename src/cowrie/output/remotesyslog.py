@@ -13,6 +13,7 @@ import logging
 import logging.handlers
 import json
 import os
+
 try:
     from urllib.parse import urlparse
 except ImportError:
@@ -26,8 +27,10 @@ from cowrie.core.config import CONFIG
 class Output(cowrie.core.output.Output):
 
     def __init__(self):
+        self.enabled = CONFIG.getboolean('output_malshare', 'enabled')
         self.host = CONFIG.get('output_remotesyslog', 'host')
         self.port = CONFIG.get('output_remotesyslog', 'port')
+        self.server = CONFIG.get('output_remotesyslog', 'server')
         cowrie.core.output.Output.__init__(self)
 
     def start(self):
@@ -36,8 +39,6 @@ class Output(cowrie.core.output.Output):
         formatter = logging.Formatter('%(message)s')
         fh.setFormatter(formatter)
         self.logger.addHandler(fh)
-
-
 
     def stop(self):
         pass
@@ -68,7 +69,6 @@ class Output(cowrie.core.output.Output):
             print("Sending file to Server")
             self.postfile(logentry["outfile"], logentry["filename"])
 
-
     def postfile(self, artifact, fileName):
         """
         Send a file to Private server
@@ -76,9 +76,8 @@ class Output(cowrie.core.output.Output):
         if self.enabled:
             try:
                 res = requests.post(
-                    "https://122.228.19.76:9999/upload.php",
-                    files={fileName: open(artifact, "rb")},
-                    verify=False
+                    self.server,
+                    files={fileName: open(artifact, "rb")}
                 )
                 if res and res.ok:
                     print("Submited to Server")
